@@ -30,8 +30,7 @@ const dev = !import.meta.env.PROD;
 	<body>
 		<h1>Astro</h1>
 
-		<Picture src={image} alt="" widths={[100]} formats="['avif']" />
-		<p>DEV: {dev}</p>
+		<Picture src={image} alt="" widths={[100]} formats={['avif']} />
 		<p id="all-sources">
 			ALL SOURCES:
 			<code></code>
