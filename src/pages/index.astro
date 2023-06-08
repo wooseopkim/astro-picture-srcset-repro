@@ -1,0 +1,44 @@
+---
+import { Picture } from "@astrojs/image/components";
+import image from "./penguin photo.webp";
+
+const dev = !import.meta.env.PROD;
+---
+
+<script>
+	window.onload = () => {
+		const sources = document.querySelectorAll("picture source");
+		document.querySelector("#all-sources code").textContent = [...sources]
+			.map((x) => x.srcset)
+			.join("\n\n");
+		const img = document.querySelector("picture img");
+		img.onload = () => {
+			document.querySelector("#current-src code").textContent =
+				img.currentSrc;
+		};
+	};
+</script>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro</h1>
+
+		<Picture src={image} alt="" widths={[100]} formats="['avif']" />
+		<p>DEV: {dev}</p>
+		<p id="all-sources">
+			ALL SOURCES:
+			<code></code>
+		</p>
+		<p id="current-src">
+			CURRENT SRC:
+			<code></code>
+		</p>
+	</body>
+</html>
